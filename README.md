@@ -1,4 +1,5 @@
 # GIF Forge
+![GIF Forge screenshot](assets/screenshot.png)
 
 A local, no-upload MP4 → GIF converter. Pick a video, drag the trim
 handles, pick a width and frame rate, and it forges a GIF with ffmpeg's
