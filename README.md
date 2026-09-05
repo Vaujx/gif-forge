@@ -1,3 +1,4 @@
+**[Download the latest release →](https://github.com/vaujx/gif-forge/releases/latest)**
 # GIF Forge
 ![GIF Forge screenshot](assets/screenshot.png)
 
