@@ -1,6 +1,11 @@
 # GIF Forge
 ![GIF Forge screenshot](assets/screenshot.png)
 
+
+*Sample output — generated at 260px / 15fps:*
+
+![Sample GIF output](assets/sample.gif)
+
 A local, no-upload MP4 → GIF converter. Pick a video, drag the trim
 handles, pick a width and frame rate, and it forges a GIF with ffmpeg's
 two-pass palette pipeline (much cleaner colors than a naive single-pass
