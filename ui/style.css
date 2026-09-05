@@ -1,0 +1,418 @@
+/* ---------------------------------------------------------------------
+   GIF Forge — brutalist / minimalist design tokens
+   One accent (construction orange) spent on the wordmark + primary
+   action. A cold teal marks success only. No radius. No blur-shadows —
+   every shadow is a hard offset block. Mono type throughout because the
+   whole product surface is numeric readouts (fps / px / seconds).
+------------------------------------------------------------------------ */
+
+:root {
+  --bg: #100f0c;
+  --panel: #17160f;
+  --panel-raised: #1d1c14;
+  --ink: #f4f1e6;
+  --ink-dim: #9c988a;
+  --line: #3a382e;
+  --accent: #ff4405;
+  --accent-ink: #100f0c;
+  --ok: #2fe6c4;
+  --danger: #ff5252;
+  --shadow: 5px 5px 0 var(--ink);
+  --shadow-sm: 3px 3px 0 var(--ink);
+  --mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--mono);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+button, input {
+  font-family: inherit;
+  color: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* ---------------------------------------------------------------- header */
+
+.bar {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 20px 28px 16px;
+  border-bottom: 3px solid var(--ink);
+  flex-shrink: 0;
+}
+
+.mark {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 30px;
+  letter-spacing: -0.5px;
+  display: flex;
+  line-height: 1;
+}
+
+.mark-block { padding: 2px 8px; }
+.mark-block--accent { background: var(--accent); color: var(--accent-ink); }
+
+.tag {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--ink-dim);
+}
+
+/* ------------------------------------------------------------- workspace */
+
+.workspace {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.stage {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border-right: 3px solid var(--ink);
+  min-height: 0;
+  overflow: auto;
+}
+
+.controls {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: auto;
+  min-height: 0;
+}
+
+/* --------------------------------------------------------------- dropzone */
+
+.dropzone {
+  position: relative;
+  flex: 1;
+  min-height: 260px;
+  border: 3px dashed var(--line);
+  background: var(--panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropzone.is-dragover {
+  border-color: var(--accent);
+  background: var(--panel-raised);
+}
+
+.dropzone-empty {
+  text-align: center;
+}
+
+.dz-line {
+  font-size: 15px;
+  margin: 0 0 10px;
+}
+
+.dz-or {
+  margin: 0 0 10px;
+  color: var(--ink-dim);
+  font-size: 12px;
+}
+
+.dz-hint {
+  margin: 14px 0 0;
+  font-size: 11px;
+  color: var(--ink-dim);
+}
+
+.preview-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+
+.hidden { display: none !important; }
+
+.swap-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+/* ------------------------------------------------------------------ chip */
+
+.chip {
+  border: 2px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  padding: 8px 12px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.chip.is-active {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.chip--ghost {
+  border-color: var(--ink-dim);
+  color: var(--ink-dim);
+  font-size: 11px;
+  background: var(--bg);
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ---------------------------------------------------------------- buttons */
+
+.btn {
+  border: 2px solid var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 12px 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink-dim);
+  border-color: var(--line);
+  box-shadow: none;
+}
+
+.btn--sm { padding: 8px 12px; font-size: 12px; }
+
+.btn--generate {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 16px;
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.btn--generate:disabled {
+  background: var(--panel-raised);
+  border-color: var(--line);
+  color: var(--ink-dim);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* ------------------------------------------------------------------- trim */
+
+.trim {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trim-readout {
+  font-size: 13px;
+}
+
+.trim-readout-dim {
+  color: var(--ink-dim);
+  margin-left: 6px;
+  font-size: 11.5px;
+}
+
+.trim-rail {
+  position: relative;
+  height: 40px;
+}
+
+.trim-track {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--line);
+}
+
+.trim-range {
+  position: absolute;
+  top: 18px;
+  height: 4px;
+  background: var(--accent);
+}
+
+.handle {
+  position: absolute;
+  top: 6px;
+  width: 14px;
+  height: 28px;
+  border: 2px solid var(--ink);
+  background: var(--panel-raised);
+  cursor: ew-resize;
+  padding: 0;
+}
+
+.handle--start { background: var(--ok); }
+.handle--end { background: var(--danger); }
+
+.trim-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.trim-fields {
+  display: flex;
+  gap: 10px;
+  font-size: 11.5px;
+  color: var(--ink-dim);
+}
+
+.trim-fields input {
+  width: 64px;
+  background: var(--panel);
+  border: 2px solid var(--line);
+  color: var(--ink);
+  padding: 4px 6px;
+  font-family: var(--mono);
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+/* ---------------------------------------------------------------- fields */
+
+.field-label {
+  margin: 0 0 8px;
+  font-size: 11px;
+  color: var(--ink-dim);
+}
+
+.text-input {
+  width: 100%;
+  background: var(--panel);
+  border: 2px solid var(--line);
+  color: var(--ink);
+  padding: 10px 10px;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.text-input:focus, .trim-fields input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.est-value {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+
+/* -------------------------------------------------------------- progress */
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress-stage {
+  margin: 0;
+  font-size: 11.5px;
+  color: var(--ink-dim);
+}
+
+.progress-meter {
+  height: 14px;
+  border: 2px solid var(--ink);
+  background: var(--panel);
+  padding: 2px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent) 0 8px,
+    #d63a04 8px 10px
+  );
+}
+
+/* ---------------------------------------------------------------- result */
+
+.result {
+  border: 2px solid var(--ok);
+  padding: 12px;
+}
+
+.result-title { margin: 0 0 4px; font-size: 13px; }
+.result-path {
+  margin: 0 0 10px;
+  font-size: 10.5px;
+  color: var(--ink-dim);
+  word-break: break-all;
+}
+
+.error {
+  border: 2px solid var(--danger);
+  padding: 12px;
+}
+
+.error-title { margin: 0 0 4px; font-size: 13px; color: var(--danger); }
+.error-msg { margin: 0; font-size: 11px; color: var(--ink-dim); white-space: pre-wrap; }
+
+/* ---------------------------------------------------------------- status */
+
+.status {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 28px;
+  border-top: 3px solid var(--ink);
+  font-size: 11px;
+  color: var(--ink-dim);
+  flex-shrink: 0;
+}
+
+/* -------------------------------------------------------- small viewport */
+
+@media (max-width: 860px) {
+  .workspace { grid-template-columns: 1fr; grid-template-rows: 1fr auto; }
+  .stage { border-right: none; border-bottom: 3px solid var(--ink); }
+}

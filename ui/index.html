@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GIF Forge</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="bar">
+    <div class="mark">
+      <span class="mark-block">GIF</span><span class="mark-block mark-block--accent">FORGE</span>
+    </div>
+    <p class="tag">mp4 → gif. runs on your machine, nothing leaves it.</p>
+  </header>
+
+  <main class="workspace" id="workspace">
+
+    <!-- LEFT: stage -->
+    <section class="stage" id="stage">
+
+      <div class="dropzone" id="dropzone">
+        <video id="preview" class="preview-video hidden" muted playsinline></video>
+
+        <div class="dropzone-empty" id="dropzoneEmpty">
+          <p class="dz-line">drop an mp4 here</p>
+          <p class="dz-or">or</p>
+          <button class="btn btn--outline" id="browseBtn" type="button">choose a video file</button>
+          <p class="dz-hint">mp4 · mov · webm · mkv · avi</p>
+        </div>
+
+        <button class="chip chip--ghost swap-btn hidden" id="swapBtn" type="button">use another video</button>
+      </div>
+
+      <div class="trim hidden" id="trimSection">
+        <div class="trim-readout">
+          <span id="selDuration">0.00s</span>
+          <span class="trim-readout-dim">selected of <span id="totalDuration">0.00s</span></span>
+        </div>
+
+        <div class="trim-rail" id="trimRail">
+          <div class="trim-track"></div>
+          <div class="trim-range" id="trimRange"></div>
+          <button class="handle handle--start" id="handleStart" type="button" aria-label="trim start"></button>
+          <button class="handle handle--end" id="handleEnd" type="button" aria-label="trim end"></button>
+        </div>
+
+        <div class="trim-controls">
+          <button class="btn btn--ghost btn--sm" id="playSelBtn" type="button">▷ preview selection</button>
+          <div class="trim-fields">
+            <label>start <input type="number" id="startInput" step="0.1" min="0" /></label>
+            <label>end <input type="number" id="endInput" step="0.1" min="0" /></label>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- RIGHT: controls -->
+    <aside class="controls">
+
+      <div class="field">
+        <p class="field-label">width</p>
+        <div class="chip-row" id="widthRow" data-value="360">
+          <button class="chip" data-width="100">100px</button>
+          <button class="chip" data-width="260">260px</button>
+          <button class="chip is-active" data-width="360">360px</button>
+          <button class="chip" data-width="480">480px</button>
+          <button class="chip" data-width="original">original</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <p class="field-label">frame rate</p>
+        <div class="chip-row" id="fpsRow" data-value="15">
+          <button class="chip" data-fps="10">10 fps</button>
+          <button class="chip is-active" data-fps="15">15 fps</button>
+          <button class="chip" data-fps="20">20 fps</button>
+          <button class="chip" data-fps="24">24 fps</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <p class="field-label">file name</p>
+        <input class="text-input" id="nameInput" type="text" value="output" spellcheck="false" />
+      </div>
+
+      <div class="field est">
+        <p class="field-label">estimate</p>
+        <p class="est-value"><span id="estFrames">0</span> frames · <span id="estSize">—</span></p>
+      </div>
+
+      <button class="btn btn--generate" id="generateBtn" type="button" disabled>
+        <span class="btn-label">generate gif</span>
+      </button>
+
+      <div class="progress hidden" id="progressBlock">
+        <p class="progress-stage" id="progressStage">preparing</p>
+        <div class="progress-meter" id="progressMeter">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="result hidden" id="resultBlock">
+        <p class="result-title">done — <span id="resultSize"></span></p>
+        <p class="result-path" id="resultPath"></p>
+        <button class="btn btn--outline btn--sm" id="revealBtn" type="button">show in folder</button>
+      </div>
+
+      <div class="error hidden" id="errorBlock">
+        <p class="error-title">that didn't work</p>
+        <p class="error-msg" id="errorMsg"></p>
+      </div>
+
+    </aside>
+  </main>
+
+  <footer class="status">
+    <span id="statusLeft">no video loaded</span>
+    <span id="statusRight">ffmpeg ready</span>
+  </footer>
+
+  <script src="vendor/anime.min.js"></script>
+  <script src="vendor/anime-fallback.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
